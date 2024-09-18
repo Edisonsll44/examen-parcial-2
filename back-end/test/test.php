@@ -12,23 +12,25 @@ try {
     // Creamos una instancia del repositorio
     $clubesRepository = new ClubesRepository($db);
 
-    // Simulamos los datos actualizados para un club
-    $clubIdToUpdate = 11; // Cambia este ID según el club que deseas actualizar
+    // Obtenemos todos los clubes de la base de datos
+    $clubes = $clubesRepository->findAll();
 
-    $updatedData = [
-        'nombre' => 'Club Atlético Quito',
-        'deporte' => 'Fútbol',
-        'ubicacion' => 'Quito, Ecuador',
-        'fecha_fundacion' => '1950-05-20'
-    ];
+    // Convertimos cada club en un objeto ClubDto
+    $clubDtos = [];
+    foreach ($clubes as $club) {
+        $clubDto = new ClubDto($club);
+        $clubDtos[] = $clubDto;
+    }
 
-    // Creamos un objeto DTO para el club con los datos actualizados
-    $clubDto = new ClubDto($updatedData);
-    
-    // Llamamos al método update del repositorio para actualizar el club
-    $clubesRepository->update($clubIdToUpdate, $clubDto);
+    // Mostramos los datos de los clubes como objetos ClubDto
+    foreach ($clubDtos as $clubDto) {
+        echo "Nombre: " . $clubDto->nombre . "\n";
+        echo "Deporte: " . $clubDto->deporte . "\n";
+        echo "Ubicación: " . $clubDto->ubicacion . "\n";
+        echo "Fecha de Fundación: " . $clubDto->fecha_fundacion . "\n";
+        echo "---------------------------\n";
+    }
 
-    echo "Club actualizado exitosamente.\n";
 } catch (Exception $e) {
-    echo "Error al actualizar el club: " . $e->getMessage();
+    echo "Error al obtener los clubes: " . $e->getMessage();
 }
