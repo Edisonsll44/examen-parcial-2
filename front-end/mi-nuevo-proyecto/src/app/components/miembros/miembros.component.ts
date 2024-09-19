@@ -44,7 +44,8 @@ export class MiembrosComponent implements OnInit {
 
     deleteMiembro(id: number, nombre: string, appelido: string): void {
       if (confirm(`¿Estás seguro de que quieres eliminar al miembro "${nombre} ${appelido}"?`)) {
-        this.membersService.deleteMiembro(id).subscribe(() => {
+        this.membersService.deleteMiembro(id).subscribe(response => {
+        alert(response.message);
           this.loadMiembros();
         });
       }
@@ -56,8 +57,9 @@ export class MiembrosComponent implements OnInit {
     }
 
     handleSave(updatedMiembro: any): void {
-      this.membersService.updateMiembro(updatedMiembro).subscribe(() => {
+      this.membersService.updateMiembro(updatedMiembro).subscribe(response => {
         this.loadMiembros();
+        alert(response.message);
         this.handleCancel(); // Opcionalmente podrías cerrar el modal aquí si es necesario
       });
     }

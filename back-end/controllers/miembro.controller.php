@@ -49,12 +49,8 @@ switch ($_GET["op"]) {
                 'telefono' => $_POST["telefono"],
                 'club_id' => $_POST["club_id"]
             ];
-
-            // Crear un objeto MiembroDto con los datos recibidos
-            $miembroDto = new MiembroDto($data);
-
             // Insertar el miembro en la base de datos
-            $resultado = $miembroRepository->create($miembroDto);
+            $resultado = $miembroRepository->create($data);
 
             if ($resultado) {
                 echo json_encode(["message" => "Miembro insertado correctamente"]);

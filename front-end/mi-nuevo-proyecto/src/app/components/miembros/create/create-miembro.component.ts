@@ -48,7 +48,8 @@ export class CreateMiembroComponent implements OnInit{
 
   createMiembro(): void {
     if (this.miembroForm.valid) {
-      this.membersService.createMiembro(this.miembroForm.value).subscribe(() => {
+      this.membersService.createMiembro(this.miembroForm.value).subscribe(response => {
+        alert(response.message);
         this.miembroCreated.emit();
         this.miembroForm.reset();
       });

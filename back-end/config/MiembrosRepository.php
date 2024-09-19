@@ -52,12 +52,12 @@ class MiembroRepository implements RepositoryInterface {
     public function create($miembro) {
         $query = "INSERT INTO Miembros (nombre, apellido, email, telefono, club_id) VALUES (:nombre, :apellido, :email, :telefono, :club_id)";
         $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(':nombre', $miembro->nombre);
-        $stmt->bindParam(':apellido', $miembro->apellido);
-        $stmt->bindParam(':email', $miembro->email);
-        $stmt->bindParam(':telefono', $miembro->telefono);
-        $stmt->bindParam(':club_id', $miembro->club_id, PDO::PARAM_INT);
+    
+        $stmt->bindParam(':nombre', $miembro['nombre']);
+        $stmt->bindParam(':apellido', $miembro['apellido']);
+        $stmt->bindParam(':email', $miembro['email']);
+        $stmt->bindParam(':telefono', $miembro['telefono']);
+        $stmt->bindParam(':club_id', $miembro['club_id'], PDO::PARAM_INT);
        
         if ($stmt->execute()) {
             return $this->conn->lastInsertId(); // Devuelve el ID del nuevo registro
@@ -65,7 +65,6 @@ class MiembroRepository implements RepositoryInterface {
             return false; // Fallo en la inserción
         }
     }
-    
     public function update($id, $miembro) {
         
         $query = "UPDATE Miembros SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, club_id = :club_id WHERE miembro_id = :id";

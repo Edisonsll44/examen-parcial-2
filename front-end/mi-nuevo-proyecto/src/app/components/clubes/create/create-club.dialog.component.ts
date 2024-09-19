@@ -34,7 +34,8 @@ export class CreateClubComponent {
 
   createClub(): void {
     if (this.clubForm.valid) {
-      this.clubesService.createClub(this.clubForm.value).subscribe(() => {
+      this.clubesService.createClub(this.clubForm.value).subscribe(response => {
+        alert(response.message);
         this.clubCreated.emit();
         this.clubForm.reset();
       });

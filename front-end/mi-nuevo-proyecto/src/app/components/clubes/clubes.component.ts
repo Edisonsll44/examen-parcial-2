@@ -56,7 +56,8 @@ export class ClubesComponent implements OnInit {
 
   handleSave(updatedClub: any): void {
     // Implementa la lógica para guardar los cambios del club aquí
-    this.clubesService.updateClub(updatedClub).subscribe(() => {
+    this.clubesService.updateClub(updatedClub).subscribe(response => {
+      alert(response.message);
       this.loadClubes();
       this.handleCancel(); // Opcionalmente podrías cerrar el modal aquí si es necesario
     });
