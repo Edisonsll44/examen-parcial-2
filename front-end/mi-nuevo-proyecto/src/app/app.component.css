@@ -1,0 +1,29 @@
+/* Contenedor de los botones para centrarlos */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Estilos personalizados para los botones */
+.custom-button {
+  background-color: #007BFF; /* Color de fondo azul */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interno */
+  margin: 10px; /* Espaciado entre los botones */
+  font-size: 16px; /* Tamaño del texto */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Mostrar cursor de mano */
+  transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+/* Efecto hover cuando el cursor está sobre el botón */
+.custom-button:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+}
+
+/* Efecto de clic */
+.custom-button:active {
+  background-color: #004085; /* Color más oscuro cuando se presiona */
+}
