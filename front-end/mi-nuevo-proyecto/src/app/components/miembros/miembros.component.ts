@@ -3,13 +3,14 @@ import { MembersService } from '../../services/members.service';
 import { CommonModule } from '@angular/common';
 import { UpdateMiembroComponent } from './update/update-miembro.component';
 import { CreateMiembroComponent } from './create/create-miembro.component';
+import { ReporteComponent } from './reporte/reporte-miembros.component';
 
 @Component({
   selector: 'app-miembros',
   standalone: true,
   templateUrl: './miembros.component.html',
   styleUrls: ['./miembros.component.css'],
-  imports: [CommonModule, UpdateMiembroComponent, CreateMiembroComponent]
+  imports: [CommonModule, UpdateMiembroComponent, CreateMiembroComponent, ReporteComponent]
 })
 export class MiembrosComponent implements OnInit {
     miembros: any[] = [];

@@ -124,3 +124,21 @@ tr:hover {
     margin-right: 20px;
   }
 }
+
+.btn {
+  /* Estilos generales para botones */
+  margin: 5px; /* Espaciado */
+  padding: 10px 20px; /* Relleno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}

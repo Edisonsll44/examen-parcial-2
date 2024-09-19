@@ -99,19 +99,24 @@ switch ($_GET["op"]) {
             }
             break;
 
-    case 'eliminar':
-        $idMiembro = $_POST["id"];
+        case 'eliminar':
+            $idMiembro = $_POST["id"];
 
-        // Eliminar el miembro de la base de datos
-        $resultado = $miembroRepository->delete($idMiembro);
+            // Eliminar el miembro de la base de datos
+            $resultado = $miembroRepository->delete($idMiembro);
 
-        if ($resultado) {
-            echo json_encode(["message" => "Miembro eliminado correctamente"]);
-        } else {
-            echo json_encode(["error" => "No se pudo eliminar el miembro"]);
-        }
+            if ($resultado) {
+                echo json_encode(["message" => "Miembro eliminado correctamente"]);
+            } else {
+                echo json_encode(["error" => "No se pudo eliminar el miembro"]);
+            }
         break;
-
+        case 'generar_reporte':
+            ob_start(); 
+            include '../reports/reporte-miembros-club.php';
+            $pdfContent = ob_get_clean();
+            echo base64_encode($pdfContent);
+            break;
     default:
         echo json_encode(["error" => "Operación no válida"]);
         break;
