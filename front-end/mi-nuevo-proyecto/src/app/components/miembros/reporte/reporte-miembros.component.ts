@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../../../enviroments/enviroment.develop';
 
 @Component({
   selector: 'app-reporte',
@@ -8,10 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./reporte-miembros.component.css']
 })
 export class ReporteComponent {
+  private reporteUrl = environment.reporteUrl;
   constructor(private http: HttpClient) {}
 
   downloadReport() {
-    this.http.get('http://localhost:8000/miembro.controller.php?op=generar_reporte', { responseType: 'text' })
+    this.http.get(this.reporteUrl, { responseType: 'text' })
       .subscribe((data) => {
         const blob = this.base64ToBlob(data, 'application/pdf');
         const url = window.URL.createObjectURL(blob);
