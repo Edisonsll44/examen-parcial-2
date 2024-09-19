@@ -14,7 +14,8 @@
   <input id="email" formControlName="email" type="email" />
 
   <label for="telefono">Teléfono:</label>
-  <input id="telefono" formControlName="telefono" type="text" />
+  <input id="telefono" formControlName="telefono" maxlength="10"
+  pattern="[0-9]*" type="text" />
 
   <label for="club">Club:</label>
   <select id="club" formControlName="club" class="form-select">

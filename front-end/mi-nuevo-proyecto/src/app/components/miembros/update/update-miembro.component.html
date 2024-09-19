@@ -3,7 +3,7 @@
   <div class="modal-background" (click)="close()"></div>
   <div class="modal-content">
     <div class="box">
-      <h2 class="title">Actualizar miembro: {{ miembro?.nombre }}</h2>
+      <h2 class="title">Actualizar miembro: {{ miembro?.nombre }} {{ miembro?.apellido }}</h2>
       <form (ngSubmit)="onSave()" [formGroup]="editForm">
         <div class="field">
           <label class="label">Nombre</label>
@@ -20,19 +20,24 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input class="input" type="text" formControlName="email" placeholder="Email del miembro del club" />
+            <input class="input" type="email" formControlName="email" placeholder="Email del miembro del club" />
           </div>
         </div>
         <div class="field">
           <label class="label">Teléfono</label>
           <div class="control">
-            <input class="input" type="date" formControlName="telefono" />
+            <input class="input" type="text" formControlName="telefono" maxlength="10" pattern="[0-9]*" placeholder="Número de teléfono" />
           </div>
         </div>
         <div class="field">
-          <label class="label">Equipo</label>
+          <label class="label" for="club">Club:</label>
           <div class="control">
-            <input class="input" type="date" formControlName="club_id" />
+            <div class="select is-fullwidth">
+              <select id="club" formControlName="club_id">
+                <option value="">Seleccione un club</option>
+                <option *ngFor="let club of clubes" [value]="club.id">{{ club.nombre }}</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="field is-grouped is-grouped-right">

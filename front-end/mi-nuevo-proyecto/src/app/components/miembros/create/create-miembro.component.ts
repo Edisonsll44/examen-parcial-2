@@ -42,7 +42,7 @@ export class CreateMiembroComponent implements OnInit{
 
   loadClubes(): void {
     this.clubService.getClubes().subscribe(data => {
-      this.clubes = data; // Asigna los clubes al array
+      this.clubes = data;
     });
   }
 

@@ -111,3 +111,22 @@
   cursor: pointer;
   z-index: 1002;
 }
+
+.select select {
+  border-color: #3273dc; /* Cambia el color del borde */
+  border-radius: 4px;
+  padding: 0.625em 1.25em;
+}
+
+.select.is-fullwidth select {
+  width: 100%; /* Asegura que ocupe el 100% del ancho */
+}
+
+.select select:hover {
+  border-color: #00d1b2; /* Cambia el color al pasar el mouse */
+}
+
+.select select:focus {
+  border-color: #23d160; /* Cambia el color al hacer foco */
+  box-shadow: 0 0 0 0.125em rgba(72, 207, 173, 0.25); /* Añade un borde con sombra */
+}
