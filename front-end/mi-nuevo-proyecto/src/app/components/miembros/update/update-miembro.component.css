@@ -1,0 +1,113 @@
+/* Estilo para el contenedor del modal */
+.modal {
+  display: none; /* Oculta el modal por defecto */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  position: fixed; /* Fija el modal en la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  z-index: 1000; /* Asegura que el modal esté sobre otros elementos */
+  opacity: 0; /* Inicia oculto */
+  transition: opacity 0.3s ease, display 0.3s ease; /* Transiciones suaves para mostrar/ocultar */
+}
+
+/* Estilo cuando el modal está activo */
+.modal.is-active {
+  display: flex; /* Muestra el modal */
+  opacity: 1; /* Hace el modal visible */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+  background: #fff; /* Fondo blanco */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  z-index: 1001;
+  position: relative; /* Asegura que el botón de cierre esté posicionado correctamente */
+}
+
+/* Estilo para el título del modal */
+.modal-content .title {
+  font-size: 1.25rem; /* Tamaño del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-weight: bold;
+}
+
+/* Estilo para los campos del formulario en el modal */
+.modal-content .field {
+  margin-bottom: 20px; /* Espacio entre los campos del formulario */
+}
+
+.modal-content .label {
+  font-weight: bold; /* Negrita para las etiquetas */
+}
+
+
+
+.modal-content .input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+/* Estilo para los botones dentro del formulario */
+.modal-content .field.is-grouped.is-grouped-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-content .button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  border: none; /* Quitar borde por defecto */
+  box-shadow: none; /* Quitar sombra por defecto */
+  text-align: center; /* Centrar el texto dentro del botón */
+}
+
+/* Botón primario */
+.modal-content .button.is-primary {
+  background-color: #007bff; /* Color de fondo del botón primario */
+  color: #fff; /* Color del texto del botón primario */
+}
+
+/* Botón secundario */
+.modal-content .button.is-light {
+  background-color: #f8f9fa; /* Color de fondo del botón secundario */
+  color: #212529; /* Color del texto del botón secundario */
+  border: 1px solid #ddd; /* Borde del botón secundario */
+}
+
+/* Estilo de los botones en estado hover */
+.modal-content .button:hover {
+  opacity: 0.8; /* Efecto de atenuación en hover */
+}
+
+/* Estilo de los botones en estado active */
+.modal-content .button:active {
+  background-color: #0056b3; /* Color de fondo más oscuro para el botón primario en estado activo */
+  color: #fff; /* Color del texto en estado activo */
+}
+
+/* Estilo para el botón de cierre del modal */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1002;
+}

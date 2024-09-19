@@ -1,0 +1,24 @@
+<!-- Botón para mostrar/ocultar el formulario -->
+<button class="btn-toggle-form" (click)="toggleForm()">
+  {{ showForm ? 'Cancelar' : 'Crear nuevo miembro de un club' }}
+</button>
+
+<form *ngIf="showForm" [formGroup]="miembroForm" (ngSubmit)="createMiembro()" class="miembro-form">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" formControlName="nombre" type="text" />
+
+  <label for="apellido">Apellido:</label>
+  <input id="apellido" formControlName="apellido" type="text" />
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" type="email" />
+
+  <label for="telefono">Teléfono</label>
+  <input id="telefono" formControlName="telefono" type="text" />
+
+  <label for="club">Club</label>
+  <input id="club" formControlName="club" type="text" />
+
+  <button type="submit">Crear miembro</button>
+  <button type="button" class="btn-cancel" (click)="toggleForm()">Cancelar</button>
+</form>

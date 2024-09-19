@@ -1,1 +1,46 @@
-<h2>Pantalla de Miembros</h2>
+<div class="table-container">
+  <!-- Botón para agregar un nuevo miembro -->
+  <app-create-miembro (miembroCreated)="handleMiembroCreated()"></app-create-miembro>
+    <!-- Etiqueta para mostrar el total de registros -->
+    <div class="total-registros">
+      <p>Total de registros: {{ miembros.length }}</p>
+    </div>
+  <!-- Tabla de miembros -->
+  <div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Telèfono</th>
+        <th>Club</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let miembro of miembros">
+        <td>{{ miembro.id }}</td>
+        <td>{{ miembro.nombre }}</td>
+        <td>{{ miembro.apellido }}</td>
+        <td>{{ miembro.email }}</td>
+        <td>{{ miembro.telefono }}</td>
+        <td>{{ miembro.club }}</td>
+        <td>
+         <!-- Botones para actualizar y eliminar -->
+         <button class="btn-edit" (click)="openEditDialog(miembro)">Actualizar</button>
+         <button class="btn-delete" (click)="deleteMiembro(miembro.id, miembro.nombre)">Eliminar</button>
+       </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  <!-- Modal para editar clubes -->
+  <app-edit-miembro-dialog
+    [miembro]="selectedMiembro"
+    [isOpen]="isModalOpen"
+    (save)="handleSave($event)"
+    (cancel)="handleCancel()">
+  </app-edit-miembro-dialog>

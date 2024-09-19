@@ -37,8 +37,8 @@ export class CreateClubComponent {
       this.clubesService.createClub(this.clubForm.value).subscribe(() => {
         this.clubCreated.emit();
         this.clubForm.reset();
-        this.toggleForm();
       });
+      this.toggleForm();
     }
   }
 }

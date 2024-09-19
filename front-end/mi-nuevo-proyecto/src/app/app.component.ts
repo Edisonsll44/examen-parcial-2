@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,15 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
-  title = 'mi-nuevo-proyecto';
+
+  constructor(private router: Router) {}
+  navigateToMiembros() {
+    this.router.navigate(['/miembros']);
+  }
+
+  navigateToClubes() {
+    this.router.navigate(['/clubes']);
+  }
 }

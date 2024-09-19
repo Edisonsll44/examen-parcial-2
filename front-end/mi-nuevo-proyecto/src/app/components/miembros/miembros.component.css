@@ -1,0 +1,126 @@
+/* Estilos para el encabezado de la página */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los botones */
+.btn-create {
+  background-color: #4CAF50; /* Verde para el botón de Crear */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-edit {
+  background-color: #2196F3; /* Azul para el botón de Editar */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-delete {
+  background-color: #f44336; /* Rojo para el botón de Eliminar */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Estilos para el contenedor de la tabla */
+.table-container {
+  margin: 20px auto; /* Márgenes laterales y superior/inferior */
+  width: 90%; /* Ancho del contenedor */
+  overflow-x: auto; /* Hace que la tabla sea desplazable en pantallas pequeñas */
+}
+.table-scroll {
+  max-height: 400px; /* Altura máxima ajustable */
+  overflow-y: auto;  /* Scroll vertical */
+  border: 1px solid #ddd; /* Opcional: para un borde visual alrededor del scroll */
+}
+/* Estilos para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Espacio interno ajustado para mejorar la legibilidad */
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilos responsivos para la tabla */
+@media (max-width: 600px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th, td {
+    display: block;
+    text-align: right;
+  }
+
+  th::before, td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  td {
+    border: none;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .total-registros {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Espacio debajo del total de registros */
+    margin-right: 20px;
+  }
+}

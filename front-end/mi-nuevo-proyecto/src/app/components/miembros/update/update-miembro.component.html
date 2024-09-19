@@ -1,0 +1,50 @@
+<!-- Modal -->
+<div class="modal" [ngClass]="{ 'is-active': isOpen }">
+  <div class="modal-background" (click)="close()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <h2 class="title">Actualizar miembro: {{ miembro?.nombre }}</h2>
+      <form (ngSubmit)="onSave()" [formGroup]="editForm">
+        <div class="field">
+          <label class="label">Nombre</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="nombre" placeholder="Nombre del miembro del club" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Apellido</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="apellido" placeholder="Apellido del miembro del club" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="email" placeholder="Email del miembro del club" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Teléfono</label>
+          <div class="control">
+            <input class="input" type="date" formControlName="telefono" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Equipo</label>
+          <div class="control">
+            <input class="input" type="date" formControlName="club_id" />
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+          <div class="control">
+            <button class="button is-primary" type="submit">Guardar</button>
+          </div>
+          <div class="control">
+            <button class="button is-light" type="button" (click)="close()">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="close()"></button>
+</div>

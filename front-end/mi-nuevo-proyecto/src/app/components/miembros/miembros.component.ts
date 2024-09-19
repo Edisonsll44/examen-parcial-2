@@ -1,12 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MembersService } from '../../services/members.service';
+import { CommonModule } from '@angular/common';
+import { UpdateMiembroComponent } from './update/update-miembro.component';
+import { CreateMiembroComponent } from './create/create-miembro.component';
 
 @Component({
   selector: 'app-miembros',
   standalone: true,
-  imports: [],
   templateUrl: './miembros.component.html',
-  styleUrl: './miembros.component.css'
+  styleUrls: ['./miembros.component.css'],
+  imports: [CommonModule, UpdateMiembroComponent, CreateMiembroComponent]
 })
-export class MiembrosComponent {
+export class MiembrosComponent implements OnInit {
+    miembros: any[] = [];
+    selectedMiembro: any = null;
+    isModalOpen: boolean = false;
 
+    constructor(private membersService: MembersService) {}
+
+    ngOnInit() {
+      this.loadMiembros();
+    }
+
+    loadMiembros() {
+      this.membersService.getMiembros().subscribe(data => {
+        console.log('Miembros data:', data);
+        this.miembros = data;
+      });
+    }
+
+    handleMiembroCreated(): void {
+      this.loadMiembros();
+    }
+
+    handleMiembroUpdated(): void {
+      this.loadMiembros();
+    }
+
+    openEditDialog(miembro: any): void {
+      this.selectedMiembro = miembro;
+      console.log(this.selectedMiembro);
+      this.isModalOpen = true; // Abre el modal
+    }
+
+    deleteMiembro(id: number, nombre: string): void {
+      if (confirm(`¿Estás seguro de que quieres eliminar al miembro "${nombre}"?`)) {
+        this.membersService.deleteMiembro(id).subscribe(() => {
+          this.loadMiembros();
+        });
+      }
+    }
+
+    handleCancel(): void {
+      this.selectedMiembro = null;
+      this.isModalOpen = false; // Cierra el modal
+    }
+
+    handleSave(updatedMiembro: any): void {
+      this.membersService.updateMiembro(updatedMiembro).subscribe(() => {
+        this.loadMiembros();
+        this.handleCancel(); // Opcionalmente podrías cerrar el modal aquí si es necesario
+      });
+    }
 }

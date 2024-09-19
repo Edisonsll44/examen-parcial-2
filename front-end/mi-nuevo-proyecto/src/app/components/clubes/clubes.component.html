@@ -1,6 +1,12 @@
+<div class="table-container">
 <!-- Botón para agregar un nuevo club -->
 <app-create-club (clubCreated)="handleClubCreated()"></app-create-club>
+  <!-- Etiqueta para mostrar el total de registros -->
+  <div class="total-registros">
+    <p>Total de registros: {{ clubes.length }}</p>
+  </div>
 <!-- Tabla de clubes -->
+<div class="table-scroll">
 <table>
   <thead>
     <tr>
@@ -27,7 +33,8 @@
     </tr>
   </tbody>
 </table>
-
+</div>
+</div>
 <!-- Modal para editar clubes -->
 <app-edit-club-dialog
   [club]="selectedClub"

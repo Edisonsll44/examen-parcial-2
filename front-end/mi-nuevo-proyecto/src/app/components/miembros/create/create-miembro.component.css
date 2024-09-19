@@ -1,0 +1,70 @@
+/* Estilo para el botón de crear miembro */
+.btn-toggle-form {
+  background-color: #4CAF50; /* Verde para el botón */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Opcional: Estilo para cuando el formulario está visible */
+.show-form {
+  display: block;
+}
+
+/* Opcional: Estilo para cuando el formulario está oculto */
+.hide-form {
+  display: none;
+}
+/* Estilo general para el formulario */
+.miembro-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+
+/* Estilo para los campos del formulario */
+.miembro-form input,
+.miembro-form select,
+.miembro-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo para los botones dentro del formulario */
+.miembro-form button {
+  background-color: #4CAF50; /* Verde para el botón de enviar */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Botón de cancelar en rojo */
+.miembro-form .btn-cancel {
+  background-color: #f44336; /* Rojo para el botón de cancelar */
+}
+
+/* Añade un margen al botón de cancelar */
+.miembro-form .btn-cancel {
+  margin-left: 10px;
+}

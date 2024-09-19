@@ -24,7 +24,6 @@ export class ClubesComponent implements OnInit {
 
   loadClubes() {
     this.clubesService.getClubes().subscribe(data => {
-      console.log(data);
       this.clubes = data;
     });
   }
