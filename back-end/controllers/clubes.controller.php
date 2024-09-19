@@ -26,6 +26,7 @@ switch ($_GET["op"]) {
         $clubDtos = array_map(function($club) {
             return new ClubDto($club); 
         }, $clubes);
+        
         echo json_encode($clubDtos); 
         break;
 
@@ -40,27 +41,30 @@ switch ($_GET["op"]) {
         }
         break;
 
-    case 'insertar':
-        
-        $data = [
-            'nombre' => $_POST["nombre"],
-            'deporte' => $_POST["deporte"],
-            'ubicacion' => $_POST["ubicacion"],
-            'fecha_fundacion' => $_POST["fecha_fundacion"]
-        ];
-
-        // Crear un objeto ClubDto con los datos recibidos
-        $clubDto = new ClubDto($data);
-
-        // Insertar el club en la base de datos
-        $resultado = $clubesRepository->create($clubDto);
-
-        if ($resultado) {
-            echo json_encode(["message" => "Club insertado correctamente"]);
-        } else {
-            echo json_encode(["error" => "No se pudo insertar el club"]);
-        }
-        break;
+        case 'insertar':
+            // Verifica que todos los parámetros están presentes
+            if (isset($_POST["nombre"]) && isset($_POST["deporte"]) && isset($_POST["ubicacion"]) && isset($_POST["fecha_fundacion"])) {
+                $data = [
+                    'nombre' => $_POST["nombre"],
+                    'deporte' => $_POST["deporte"],
+                    'ubicacion' => $_POST["ubicacion"],
+                    'fecha_fundacion' => $_POST["fecha_fundacion"]
+                ];
+                // Crear un objeto ClubDto con los datos recibidos
+                $clubDto = new ClubDto($data);
+    
+                // Insertar el club en la base de datos
+                $resultado = $clubesRepository->create($clubDto);
+    
+                if ($resultado) {
+                    echo json_encode(["message" => "Club insertado correctamente"]);
+                } else {
+                    echo json_encode(["error" => "No se pudo insertar el club"]);
+                }
+            } else {
+                echo json_encode(["error" => "Datos incompletos"]);
+            }
+            break;
 
     case 'actualizar':
         $idClub = $_POST["id"];

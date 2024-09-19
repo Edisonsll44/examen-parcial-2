@@ -1,1 +1,37 @@
-<h2>Pantalla de Clubes</h2>
+<!-- Botón para agregar un nuevo club -->
+<app-create-club (clubCreated)="handleClubCreated()"></app-create-club>
+<!-- Tabla de clubes -->
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Deporte</th>
+      <th>Ubicación</th>
+      <th>Fecha de Fundación</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let club of clubes">
+      <td>{{ club.id }}</td>
+      <td>{{ club.nombre }}</td>
+      <td>{{ club.deporte }}</td>
+      <td>{{ club.ubicacion }}</td>
+      <td>{{ club.fecha_fundacion | date:'shortDate' }}</td>
+      <td>
+       <!-- Botones para actualizar y eliminar -->
+       <button class="btn-edit" (click)="openEditDialog(club)">Actualizar</button>
+       <button class="btn-delete" (click)="deleteClub(club.id, club.nombre)">Eliminar</button>
+     </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal para editar clubes -->
+<app-edit-club-dialog
+  [club]="selectedClub"
+  [isOpen]="isModalOpen"
+  (save)="handleSave($event)"
+  (cancel)="handleCancel()">
+</app-edit-club-dialog>

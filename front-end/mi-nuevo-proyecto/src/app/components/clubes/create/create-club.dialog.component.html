@@ -1,0 +1,22 @@
+<!-- Botón para mostrar/ocultar el formulario -->
+<button class="btn-toggle-form" (click)="toggleForm()">
+  {{ showForm ? 'Cancelar' : 'Crear Nuevo Club' }}
+</button>
+
+<!-- Formulario para crear un nuevo club -->
+<form *ngIf="showForm" [formGroup]="clubForm" (ngSubmit)="createClub()" class="club-form">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" formControlName="nombre" type="text" />
+
+  <label for="deporte">Deporte:</label>
+  <input id="deporte" formControlName="deporte" type="text" />
+
+  <label for="ubicacion">Ubicación:</label>
+  <input id="ubicacion" formControlName="ubicacion" type="text" />
+
+  <label for="fecha_fundacion">Fecha de Fundación:</label>
+  <input id="fecha_fundacion" formControlName="fecha_fundacion" type="date" />
+
+  <button type="submit">Crear Club</button>
+  <button type="button" class="btn-cancel" (click)="toggleForm()">Cancelar</button>
+</form>
