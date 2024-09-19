@@ -22,7 +22,7 @@ $miembroRepository = new MiembroRepository($db);
 
 switch ($_GET["op"]) {
     case 'todos':
-        $miembros = $miembroRepository->findAll(); 
+        $miembros = $miembroRepository->findAll();
         $miembroDtos = array_map(function($miembro) {
             return new MiembroDto($miembro); 
         }, $miembros);
@@ -66,29 +66,38 @@ switch ($_GET["op"]) {
         }
         break;
 
-    case 'actualizar':
-        $idMiembro = $_POST["id"];
-        // Crear un array con los nuevos datos del miembro
-        $data = [
-            'nombre' => $_POST["nombre"],
-            'apellido' => $_POST["apellido"],
-            'email' => $_POST["email"],
-            'telefono' => $_POST["telefono"],
-            'club_id' => $_POST["club_id"]
-        ];
-
-        // Crear un objeto MiembroDto con los datos
-        $miembroDto = new MiembroDto($data);
-
-        // Actualizar el miembro en la base de datos
-        $resultado = $miembroRepository->update($idMiembro, $miembroDto);
-
-        if ($resultado) {
-            echo json_encode(["message" => "Miembro actualizado correctamente"]);
-        } else {
-            echo json_encode(["error" => "No se pudo actualizar el miembro"]);
-        }
-        break;
+        case 'actualizar':
+            // Verificar que se envía el ID del miembro
+            if (!isset($_POST["miembro_id"])) {
+                echo json_encode(["error" => "ID del miembro no proporcionado"]);
+                break;
+            }
+    
+            $idMiembro = $_POST["miembro_id"];
+    
+            // Validar que los datos para actualizar fueron enviados
+            if (isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["email"]) && isset($_POST["telefono"]) && isset($_POST["club_id"])) {
+                // Crear un array con los nuevos datos del miembro
+                $data = [
+                    'nombre' => $_POST["nombre"], 
+                    'apellido' => $_POST["apellido"],
+                    'email' => $_POST["email"],
+                    'telefono' => $_POST["telefono"],
+                    'club_id' => $_POST["club_id"]
+                ];
+            
+                // Actualizar el miembro en la base de datos
+                $resultado = $miembroRepository->update($idMiembro, miembro: $data);
+            
+                if ($resultado) {
+                    echo json_encode(["message" => "Miembro actualizado correctamente"]);
+                } else {
+                    echo json_encode(["error" => "No se pudo actualizar el miembro"]);
+                }
+            } else {
+                echo json_encode(["error" => "Datos incompletos para la actualización"]);
+            }
+            break;
 
     case 'eliminar':
         $idMiembro = $_POST["id"];

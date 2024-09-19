@@ -14,7 +14,16 @@ class MiembroRepository implements RepositoryInterface {
      * @return array Lista de miembros.
      */
     public function findAll() {
-        $query = "SELECT * FROM Miembros";
+        $query = $query = "SELECT 
+        m.miembro_id AS miembro_id, 
+        m.nombre AS miembro_nombre, 
+        m.apellido AS miembro_apellido, 
+        m.email AS miembro_email, 
+        m.telefono AS miembro_telefono, 
+        c.nombre AS club_nombre,
+        c.club_id as club_id
+      FROM Miembros m
+      INNER JOIN Clubes c ON m.club_id = c.club_id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -56,23 +65,17 @@ class MiembroRepository implements RepositoryInterface {
             return false; // Fallo en la inserción
         }
     }
-
-    /**
-     * Actualiza los datos de un miembro existente.
-     * 
-     * @param int $id ID del miembro a actualizar.
-     * @param MiembroDto $miembro Objeto DTO con los nuevos datos del miembro.
-     * @return bool Verdadero si la actualización fue exitosa, falso en caso contrario.
-     */
+    
     public function update($id, $miembro) {
+        
         $query = "UPDATE Miembros SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, club_id = :club_id WHERE miembro_id = :id";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(':nombre', $miembro->nombre);
-        $stmt->bindParam(':apellido', $miembro->apellido);
-        $stmt->bindParam(':email', $miembro->email);
-        $stmt->bindParam(':telefono', $miembro->telefono);
-        $stmt->bindParam(':club_id', $miembro->club_id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre', $miembro['nombre']);
+        $stmt->bindParam(':apellido', $miembro['apellido']);
+        $stmt->bindParam(':email', $miembro['email']);
+        $stmt->bindParam(':telefono', $miembro['telefono']);
+        $stmt->bindParam(':club_id', $miembro['club_id'], PDO::PARAM_INT);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute(); // Devuelve true si se actualizó al menos una fila
