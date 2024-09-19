@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-reporte',
   standalone: true,
-  template: `<button class="btn btn-primary" (click)="downloadReport()">Generar Reporte</button>`
+  template: `<button class="btn btn-primary" (click)="downloadReport()">Generar Reporte</button>`,
+  styleUrls: ['./reporte-miembros.component.css']
 })
 export class ReporteComponent {
   constructor(private http: HttpClient) {}
