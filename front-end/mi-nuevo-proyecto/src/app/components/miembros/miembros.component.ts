@@ -24,7 +24,6 @@ export class MiembrosComponent implements OnInit {
 
     loadMiembros() {
       this.membersService.getMiembros().subscribe(data => {
-        console.log('Miembros data:', data);
         this.miembros = data;
       });
     }
@@ -39,12 +38,11 @@ export class MiembrosComponent implements OnInit {
 
     openEditDialog(miembro: any): void {
       this.selectedMiembro = miembro;
-      console.log(this.selectedMiembro);
-      this.isModalOpen = true; // Abre el modal
+      this.isModalOpen = true;
     }
 
-    deleteMiembro(id: number, nombre: string): void {
-      if (confirm(`¿Estás seguro de que quieres eliminar al miembro "${nombre}"?`)) {
+    deleteMiembro(id: number, nombre: string, appelido: string): void {
+      if (confirm(`¿Estás seguro de que quieres eliminar al miembro "${nombre} ${appelido}"?`)) {
         this.membersService.deleteMiembro(id).subscribe(() => {
           this.loadMiembros();
         });

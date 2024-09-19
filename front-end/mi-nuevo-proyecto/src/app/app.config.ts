@@ -6,6 +6,6 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideRouter(routes,withDebugTracing())
+    provideRouter(routes)
   ]
 };

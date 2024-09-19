@@ -17,11 +17,13 @@ export class MembersService {
 
   createMiembro(miembro: any): Observable<any> {
     const formData = new FormData();
+    console.log(miembro);
     formData.append('id', miembro.miembro_id);
     formData.append('nombre', miembro.nombre);
     formData.append('apellido', miembro.apellido);
     formData.append('email', miembro.email);
     formData.append('telefono', miembro.telefono);
+    formData.append('club_id', miembro.club);
 
     return this.http.post<any>(`${this.apiUrl}?op=insertar`, formData);
   }

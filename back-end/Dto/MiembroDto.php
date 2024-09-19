@@ -1,6 +1,6 @@
 <?php
 class MiembroDto {
-    public $miembro_id;
+    public $id;
     public $nombre;
     public $apellido;
     public $email;
@@ -8,7 +8,7 @@ class MiembroDto {
     public $club_id;
 
     public function __construct($data) {
-        $this->miembro_id = $data['miembro_id'] ?? null;
+        $this->id = $data['miembro_id'] ?? null;
         $this->nombre = $data['nombre'] ?? null;
         $this->apellido = $data['apellido'] ?? null;
         $this->email = $data['email'] ?? null;

@@ -41,24 +41,28 @@ switch ($_GET["op"]) {
         break;
 
     case 'insertar':
-        $data = [
-            'nombre' => $_POST["nombre"],
-            'apellido' => $_POST["apellido"],
-            'email' => $_POST["email"],
-            'telefono' => $_POST["telefono"],
-            'club_id' => $_POST["club_id"]
-        ];
+        if (isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["email"]) && isset($_POST["telefono"]) && isset($_POST["club_id"])) {
+            $data = [
+                'nombre' => $_POST["nombre"],
+                'apellido' => $_POST["apellido"],
+                'email' => $_POST["email"],
+                'telefono' => $_POST["telefono"],
+                'club_id' => $_POST["club_id"]
+            ];
 
-        // Crear un objeto MiembroDto con los datos recibidos
-        $miembroDto = new MiembroDto($data);
+            // Crear un objeto MiembroDto con los datos recibidos
+            $miembroDto = new MiembroDto($data);
 
-        // Insertar el miembro en la base de datos
-        $resultado = $miembroRepository->create($miembroDto);
+            // Insertar el miembro en la base de datos
+            $resultado = $miembroRepository->create($miembroDto);
 
-        if ($resultado) {
-            echo json_encode(["message" => "Miembro insertado correctamente", "id" => $resultado]);
+            if ($resultado) {
+                echo json_encode(["message" => "Miembro insertado correctamente"]);
+            } else {
+                echo json_encode(["error" => "No se pudo insertar el miembro asociado a un club"]);
+            }
         } else {
-            echo json_encode(["error" => "No se pudo insertar el miembro"]);
+            echo json_encode(["error" => "Datos incompletos"]);
         }
         break;
 

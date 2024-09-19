@@ -49,7 +49,7 @@ class MiembroRepository implements RepositoryInterface {
         $stmt->bindParam(':email', $miembro->email);
         $stmt->bindParam(':telefono', $miembro->telefono);
         $stmt->bindParam(':club_id', $miembro->club_id, PDO::PARAM_INT);
-
+       
         if ($stmt->execute()) {
             return $this->conn->lastInsertId(); // Devuelve el ID del nuevo registro
         } else {
